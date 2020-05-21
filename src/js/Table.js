@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 class Table extends React.Component {
   render() {
     return (
-      <table class='table'>
+      <table class="table">
         <thead>
           <tr>
             <th>#</th>
@@ -11,20 +11,20 @@ class Table extends React.Component {
             <th>Votes</th>
           </tr>
         </thead>
-        <tbody >
+        <tbody>
           {this.props.candidates.map((candidate) => {
-            return(
+            return (
               <tr>
                 <th>{candidate.id.toNumber()}</th>
                 <td>{candidate.name}</td>
                 <td>{candidate.voteCount.toNumber()}</td>
               </tr>
-            )
+            );
           })}
         </tbody>
       </table>
-    )
+    );
   }
 }
 
-export default Table
+export default Table;
