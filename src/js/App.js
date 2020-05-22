@@ -1,4 +1,6 @@
 import React from "react";
+import "@fortawesome/fontawesome-free/js/all";
+
 import ReactDOM from "react-dom";
 import Web3 from "web3";
 import TruffleContract from "truffle-contract";
@@ -7,7 +9,7 @@ import Content from "./Content";
 import "bootstrap/dist/css/bootstrap.css";
 import { Button } from "reactstrap";
 import MyNav from "./MyNav";
-import { BrowserRouter, Switch } from "react-router-dom";
+import { HashRouter as BrowserRouter, Switch } from "react-router-dom";
 import EditDetails from "./EditDetails";
 
 class App extends React.Component {
@@ -158,7 +160,7 @@ class App extends React.Component {
               </div>
             </div>
           </BrowserRouter>
-          <BrowserRouter path="/editDetails">
+          <BrowserRouter exact path="/editDetails">
             <EditDetails
               web3={this.web3}
               eth={this.electionInstance}
