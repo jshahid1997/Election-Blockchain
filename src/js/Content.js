@@ -12,13 +12,7 @@ class Content extends React.Component {
       SS: 0,
     };
   }
-  addId = (id) => {
-    const candidateIds = [...this.state.candidateIds];
-    candidateIds.push(id);
-    this.setState({
-      candidateIds: candidateIds,
-    });
-  };
+
   handleClick = (event) => {
     event.preventDefault();
     const ids = [];
@@ -38,7 +32,7 @@ class Content extends React.Component {
           <Form
             candidates={this.props.VP}
             addId={(id) => {
-              this.setState({ VP: id });
+              this.setState({ ...this.state, VP: id });
             }}
           />
         ) : null}
@@ -48,7 +42,7 @@ class Content extends React.Component {
           <Form
             candidates={this.props.GS}
             addId={(id) => {
-              this.setState({ GS: id });
+              this.setState({ ...this.state, GS: id });
             }}
           />
         ) : null}
@@ -58,7 +52,7 @@ class Content extends React.Component {
           <Form
             candidates={this.props.CS}
             addId={(id) => {
-              this.setState({ CS: id });
+              this.setState({ ...this.state, CS: id });
             }}
           />
         ) : null}
@@ -68,7 +62,7 @@ class Content extends React.Component {
           <Form
             candidates={this.props.SS}
             addId={(id) => {
-              this.setState({ SS: id });
+              this.setState({ ...this.state, SS: id });
             }}
           />
         ) : null}
