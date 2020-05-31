@@ -25,14 +25,21 @@ class App extends React.Component {
       loading: true,
       voting: false,
     };
+    ethereum.enable();
 
-    if (typeof web3 != "undefined") {
-      this.web3Provider = web3.currentProvider;
-    } else {
+    if (typeof window.ethereum !== 'undefined') {
+      // Ethereum user detected. You can now use the provider.
+      this.web3Provider = window['ethereum'];
+      console.log(ethereum.selectedAddress);
+      console.log(ethereum.isMetaMask);
+
+    }
+    else {
       this.web3Provider = new Web3.providers.HttpProvider(
         "http://localhost:7545"
       );
     }
+    console.log(web3.eth.accounts);
 
     this.web3 = new Web3(this.web3Provider);
 
@@ -46,7 +53,6 @@ class App extends React.Component {
   componentDidMount() {
     // TODO: Refactor with promise chain
     this.web3.eth.getCoinbase((err, account) => {
-      console.log(account);
       this.setState({ account });
       this.election.deployed().then((electionInstance) => {
         this.electionInstance = electionInstance;
@@ -59,7 +65,7 @@ class App extends React.Component {
             this.electionInstance.candidates(i).then((candidate) => {
               if (candidate[3] === "VP") {
                 const VP = [...this.state.VP];
-
+                // console.log(candidate[2]);
                 VP.push({
                   id: candidate[0],
                   name: candidate[1],
@@ -145,16 +151,16 @@ class App extends React.Component {
                   {this.state.loading || this.state.voting ? (
                     <p class="text-center">Loading...</p>
                   ) : (
-                    <Content
-                      account={this.state.account}
-                      VP={this.state.VP}
-                      GS={this.state.GS}
-                      CS={this.state.CS}
-                      SS={this.state.SS}
-                      hasVoted={this.state.hasVoted}
-                      castVote={this.castVote}
-                    />
-                  )}
+                      <Content
+                        account={this.state.account}
+                        VP={this.state.VP}
+                        GS={this.state.GS}
+                        CS={this.state.CS}
+                        SS={this.state.SS}
+                        hasVoted={this.state.hasVoted}
+                        castVote={this.castVote}
+                      />
+                    )}
                 </div>
                 {/* <Button onClick={() => this.handleClick()}>Add candidate</Button> */}
               </div>

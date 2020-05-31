@@ -7,7 +7,7 @@ class EditDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      account: "0x1b53a6e8d57a343de37c09833fec13f8a7fdc3b2",
+      account: "0x9f2dabffdcf42f74fdec98ac769b70960fdfa0bc",
       isOpen: false,
       name: "",
       post: "",
@@ -58,8 +58,8 @@ class EditDetails extends Component {
                 addCandidate={this.addCandidate}
               />
             ) : (
-              <h1>You are not authorized to edit the details</h1>
-            )}
+                <h1>You are not authorized to edit the details</h1>
+              )}
           </div>
         </div>
       </div>
@@ -67,5 +67,5 @@ class EditDetails extends Component {
   }
 }
 
-//   // <h1>Hi</h1>
+
 export default EditDetails;
